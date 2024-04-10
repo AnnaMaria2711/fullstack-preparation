@@ -4,11 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b49a0251-bec9-4620-84ec-29116d295786" name="Changes" comment="the REAL initial commit">
-      <change afterPath="$PROJECT_DIR$/.github/workflows/sonar-backend-build.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.github/workflows/github-ci.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/github-ci.yml" afterDir="false" />
+    <list default="true" id="b49a0251-bec9-4620-84ec-29116d295786" name="Changes" comment="added backend sonar-backend-build.yml, added jacoco plugin to pom.xml and changed code in github-ci.yml and workspace.xml">
+      <change afterPath="$PROJECT_DIR$/backend/src/main/resources/application-dev.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/backend/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -105,7 +103,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1712666548069</updated>
-      <workItem from="1712666549083" duration="5555000" />
+      <workItem from="1712666549083" duration="8306000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <option name="closed" value="true" />
@@ -139,7 +137,15 @@
       <option name="project" value="LOCAL" />
       <updated>1712671247959</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="added backend sonar-backend-build.yml, added jacoco plugin to pom.xml and changed code in github-ci.yml and workspace.xml">
+      <option name="closed" value="true" />
+      <created>1712734140158</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1712734140158</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -154,6 +160,7 @@
     <MESSAGE value="help..." />
     <MESSAGE value="add backend" />
     <MESSAGE value="the REAL initial commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="the REAL initial commit" />
+    <MESSAGE value="added backend sonar-backend-build.yml, added jacoco plugin to pom.xml and changed code in github-ci.yml and workspace.xml" />
+    <option name="LAST_COMMIT_MESSAGE" value="added backend sonar-backend-build.yml, added jacoco plugin to pom.xml and changed code in github-ci.yml and workspace.xml" />
   </component>
 </project>

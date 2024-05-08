@@ -1,28 +1,31 @@
 import React, {useState} from "react";
 import axios from "axios";
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
+import "./AddStudyset.css";
 
 function AddStudyset() {
 
-    const [word, setWord] = useState<string>();
-    const [solution, setSolution] = useState<string>();
-    const [name, setName] = useState<string>();
+    const navigate = useNavigate();
+    const [word, setWord] = useState<string>("");
+    const [solution, setSolution] = useState<string>("");
+    const [name, setName] = useState<string>("");
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        if (solution || word || word && solution == "") {
+        if (!solution || !word || !name) {
             throw new Error("Input fields must be filled");
         }
         if (word && solution !== "") {
             return
         }
-        axios.post("/studyset/create" + word + solution).then(res => {
+        axios.post("/studyset/create" + name + word + solution).then(res => {
             console.log(res);
+            navigate("/collections");
         })
 
     }
     return (
         <>
-            <div className={"allight-left"}>
+            <div className={"align-left"}>
                 <Link to={"/collections"}>Back</Link>
             </div>
             <h1>Add Studyset</h1>

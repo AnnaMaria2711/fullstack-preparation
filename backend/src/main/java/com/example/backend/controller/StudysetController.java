@@ -21,6 +21,11 @@ public class StudysetController {
         return studysetService.fetchALLStudysets();
     }
 
+    @GetMapping("/{name}")
+    public List<Studyset> searchStudysets(@PathVariable String name) {
+        return studysetService.findStudyset(name);
+    }
+
     @PostMapping("/create")
     public Studyset createStudyset(@RequestBody StudysetCreateRequest request) {
         studysetService.createStudyset(request);

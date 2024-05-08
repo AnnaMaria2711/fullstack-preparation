@@ -1,12 +1,14 @@
 package com.example.backend.controller;
 
+import com.example.backend.model.dao.Studyset;
 import com.example.backend.model.dao.User;
+import com.example.backend.model.dto.StudysetCreateRequest;
 import com.example.backend.service.UserService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.Set;
 
 @RestController
 @RequiredArgsConstructor
@@ -20,5 +22,15 @@ public class UserController {
         return userService.fetchUsers(name);
     }
 
+    @GetMapping("/{name}/studysets")
+    public List<Studyset> fetchStudysets(@PathVariable String name) {
+        return userService.fetchStudysets(name);
+    }
+
+    @PostMapping("/{username}/studyset/create")
+    public Set<Studyset> addStudyset(@PathVariable String username, @RequestBody StudysetCreateRequest studyset) {
+        System.out.println(studyset);
+        return userService.addSetToUser(username, studyset);
+    }
 
 }

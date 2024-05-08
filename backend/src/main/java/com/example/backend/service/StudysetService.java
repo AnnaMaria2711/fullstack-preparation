@@ -24,4 +24,8 @@ public class StudysetService {
         studyset.setName(request.getName());
         return studysetRepository.save(studyset);
     }
+
+    public List<Studyset> findStudyset(String name) {
+        return studysetRepository.findAllByNameContaining(name);
+    }
 }

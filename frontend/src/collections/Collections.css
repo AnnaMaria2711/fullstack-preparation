@@ -1,0 +1,20 @@
+.collections {
+    height: 900px;
+    width: 100%;
+    background-color: #3d3c3c;
+    display: grid;
+}
+
+.align-right {
+    text-align: right;
+}
+
+body {
+
+    height: 100vh;
+    margin: 0;
+}
+
+.padding-top {
+    padding-top: 20px;
+}

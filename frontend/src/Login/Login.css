@@ -1,0 +1,6 @@
+.center-login {
+    display: flex;
+    height: 100%;
+    justify-content: space-around;
+    flex-direction: column;
+}

@@ -5,17 +5,20 @@ import com.example.backend.model.dto.StudysetCreateRequest;
 import com.example.backend.model.repository.StudysetRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Set;
 
 @Service
+@Transactional
 @RequiredArgsConstructor
 public class StudysetService {
 
     private final StudysetRepository studysetRepository;
 
-    public List<Studyset> fetchALLStudysets() {
-        return studysetRepository.findAll();
+    public Set<Studyset> fetchALLStudysets() {
+        return studysetRepository.findAllWithUser();
     }
 
 

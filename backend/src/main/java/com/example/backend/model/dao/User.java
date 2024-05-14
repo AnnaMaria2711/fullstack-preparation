@@ -15,11 +15,11 @@ public class User {
     private String name;
 
     @ManyToMany
-    @JoinTable(
-            name = "user_studyset",
-            joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "studyset_id"))
-    private Set<Studyset> studysets;
+    private Set<Studyset> studysets = Set.of();
+
+    public void addStudyset(Studyset s) {
+        studysets.add(s);
+    }
 
 
 }

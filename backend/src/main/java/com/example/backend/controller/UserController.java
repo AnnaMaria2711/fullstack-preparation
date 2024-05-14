@@ -7,7 +7,6 @@ import com.example.backend.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 import java.util.Set;
 
 @RestController
@@ -23,13 +22,12 @@ public class UserController {
     }
 
     @GetMapping("/{name}/studysets")
-    public List<Studyset> fetchStudysets(@PathVariable String name) {
+    public Set<Studyset> fetchStudysets(@PathVariable String name) {
         return userService.fetchStudysets(name);
     }
 
     @PostMapping("/{username}/studyset/create")
     public Set<Studyset> addStudyset(@PathVariable String username, @RequestBody StudysetCreateRequest studyset) {
-        System.out.println(studyset);
         return userService.addSetToUser(username, studyset);
     }
 

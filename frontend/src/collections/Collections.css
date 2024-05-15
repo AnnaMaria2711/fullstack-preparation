@@ -1,8 +1,33 @@
+.page-container {
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-rows: 1fr 3fr 1fr;
+}
+
+.studyset-list-container {
+    padding: 20px;
+    border: #747bff solid thin;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
 .collections {
     height: 900px;
     width: 100%;
     background-color: #3d3c3c;
-    display: grid;
+}
+
+.collection-item {
+    padding: 40px;
+    border: #f9f9f9 solid medium;
+    border-radius: 20px;
+    max-height: 40px;
+    min-width: 80px;
+    max-width: 100px;
+    align-content: center;
+    text-align: center;
 }
 
 .align-right {

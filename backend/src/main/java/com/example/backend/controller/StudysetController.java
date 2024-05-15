@@ -11,7 +11,7 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/studyset")
+@RequestMapping("/api/studyset")
 public class StudysetController {
 
     private final StudysetService studysetService;

@@ -1,5 +1,6 @@
 package com.example.backend.service;
 
+import com.example.backend.model.dao.Card;
 import com.example.backend.model.dao.Studyset;
 import com.example.backend.model.dao.User;
 import com.example.backend.model.dto.StudysetCreateRequest;
@@ -28,6 +29,8 @@ public class StudysetService {
         Studyset studyset = new Studyset();
         studyset.setName(request.getName());
         studyset.setOwner(user);
+        List<Card> cards = request.getCards().stream().map(Card::new).toList();
+        studyset.setCards(cards);
         studyset = studysetRepository.save(studyset);
 
         return studyset;

@@ -19,5 +19,8 @@ public class Studyset {
     private User owner;
 
     @ElementCollection
+    private List<Card> cards = List.of();
+
+    @ElementCollection
     private List<Long> observerIds = List.of();
 }

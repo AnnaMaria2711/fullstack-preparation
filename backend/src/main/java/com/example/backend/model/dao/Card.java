@@ -1,20 +1,21 @@
 package com.example.backend.model.dao;
 
 
-import jakarta.persistence.*;
+import com.example.backend.model.dto.CardDto;
+import jakarta.persistence.Embeddable;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
-@Entity
 @Data
+@Embeddable
+@NoArgsConstructor
 public class Card {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
 
     private String word;
     private String solution;
 
-    @ManyToOne
-    private Studyset studyset;
-
+    public Card(CardDto cardDto) {
+        this.word = cardDto.getWord();
+        this.solution = cardDto.getSolution();
+    }
 }

@@ -3,6 +3,7 @@ import React, {useEffect, useState} from "react";
 import axios from "axios";
 import {Link, useNavigate} from "react-router-dom";
 
+
 function Collections() {
     const navigate = useNavigate();
     const [studysetEntry, setStudysetEntry] = useState<string>('');
@@ -32,7 +33,7 @@ function Collections() {
                     setStudysetEntry(e.target.value);
                 }}/>
             </form>
-
+            <div className={"header"}>Select the collection you wish to study</div>
             <div className={"align-right"}>
                 <Link to={"/add+studyset"}>add studyset</Link>
                 <div className="collections"></div>

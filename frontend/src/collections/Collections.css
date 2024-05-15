@@ -18,3 +18,9 @@ body {
 .padding-top {
     padding-top: 20px;
 }
+
+.header {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #ffffff;
+}

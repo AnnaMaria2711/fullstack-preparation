@@ -5,4 +5,5 @@ import lombok.Data;
 @Data
 public class StudysetCreateRequest {
     private String name;
+    private Long ownerId;
 }

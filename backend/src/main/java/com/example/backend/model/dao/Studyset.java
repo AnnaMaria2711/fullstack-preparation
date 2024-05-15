@@ -3,7 +3,7 @@ package com.example.backend.model.dao;
 import jakarta.persistence.*;
 import lombok.Data;
 
-import java.util.Set;
+import java.util.List;
 
 @Entity
 @Data
@@ -15,8 +15,9 @@ public class Studyset {
 
     private String name;
 
-    @ManyToMany(mappedBy = "studysets")
-    private Set<User> user;
+    @ManyToOne
+    private User owner;
 
-
+    @ElementCollection
+    private List<Long> observerIds = List.of();
 }

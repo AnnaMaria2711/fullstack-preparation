@@ -1,6 +1,7 @@
 package com.example.backend.service;
 
 import com.example.backend.model.dao.Studyset;
+import com.example.backend.model.dao.User;
 import com.example.backend.model.dto.StudysetCreateRequest;
 import com.example.backend.model.repository.StudysetRepository;
 import lombok.RequiredArgsConstructor;
@@ -8,7 +9,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Set;
 
 @Service
 @Transactional
@@ -16,16 +16,21 @@ import java.util.Set;
 public class StudysetService {
 
     private final StudysetRepository studysetRepository;
+    private final UserService userService;
 
-    public Set<Studyset> fetchALLStudysets() {
-        return studysetRepository.findAllWithUser();
+    public List<Studyset> fetchALLStudysets() {
+        return studysetRepository.findAll();
     }
 
-
     public Studyset createStudyset(StudysetCreateRequest request) {
+        User user = userService.findUserById(request.getOwnerId());
+
         Studyset studyset = new Studyset();
         studyset.setName(request.getName());
-        return studysetRepository.save(studyset);
+        studyset.setOwner(user);
+        studyset = studysetRepository.save(studyset);
+
+        return studyset;
     }
 
     public List<Studyset> findStudyset(String name) {

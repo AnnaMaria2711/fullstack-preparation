@@ -14,7 +14,7 @@ public class User {
 
     private String name;
 
-    @ManyToMany
+    @OneToMany(mappedBy = "owner")
     private Set<Studyset> studysets = Set.of();
 
     public void addStudyset(Studyset s) {

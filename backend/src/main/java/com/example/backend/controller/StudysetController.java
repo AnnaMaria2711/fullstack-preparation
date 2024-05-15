@@ -8,7 +8,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Set;
 
 @RestController
 @RequiredArgsConstructor
@@ -18,7 +17,7 @@ public class StudysetController {
     private final StudysetService studysetService;
 
     @GetMapping
-    public Set<Studyset> fetchStudyset() {
+    public List<Studyset> fetchStudyset() {
         return studysetService.fetchALLStudysets();
     }
 
@@ -29,7 +28,6 @@ public class StudysetController {
 
     @PostMapping("/create")
     public Studyset createStudyset(@RequestBody StudysetCreateRequest request) {
-        studysetService.createStudyset(request);
         return studysetService.createStudyset(request);
     }
 }

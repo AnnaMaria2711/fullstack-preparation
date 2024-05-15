@@ -1,3 +1,19 @@
 .align-left {
+    padding-top: 30px;
     text-align: left;
+}
+
+.studyset-word-solution {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    padding-top: 30px;
+
+}
+
+.h1 {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #ffffff;
+    padding-bottom: 20px;
 }

@@ -11,10 +11,10 @@ function Login() {
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        axios.get("/user/" + name).then((res) => {
+        axios.get("api/user/" + name).then((res) => {
             console.log(res)
             localStorage.setItem("User", JSON.stringify(res.data));
-            navigate("/collections");
+            navigate("/");
         })
 
     }

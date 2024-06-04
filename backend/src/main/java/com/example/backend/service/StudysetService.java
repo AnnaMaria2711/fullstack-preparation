@@ -36,7 +36,7 @@ public class StudysetService {
         return studyset;
     }
 
-    public List<Studyset> findStudyset(String name) {
-        return studysetRepository.findAllByNameContaining(name);
+    public Studyset findStudyset(String name) {
+        return studysetRepository.findByName(name);
     }
 }

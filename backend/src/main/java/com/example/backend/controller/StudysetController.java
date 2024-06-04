@@ -22,12 +22,15 @@ public class StudysetController {
     }
 
     @GetMapping("/{name}")
-    public List<Studyset> searchStudysets(@PathVariable String name) {
+    public Studyset searchStudysets(@PathVariable String name) {
         return studysetService.findStudyset(name);
     }
 
     @PostMapping("/create")
     public Studyset createStudyset(@RequestBody StudysetCreateRequest request) {
+        if (request.getName().isEmpty() || request.getCards().isEmpty()) {
+            throw new RuntimeException();
+        }
         return studysetService.createStudyset(request);
     }
 }

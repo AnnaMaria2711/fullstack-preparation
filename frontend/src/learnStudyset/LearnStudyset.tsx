@@ -13,6 +13,9 @@ export default function LearnStudyset() {
                 <Link to={"/"}>Back</Link>
             </div>
             <div className="h1">{name}</div>
+            <div className="edit-studyset">
+                <Link to={"/"}></Link>
+            </div>
             <div className={"flex-row"}>
                 <div className="collection-item" onClick={() => navigate(`/learn/${name}/flashcards`)}>
                     <span>Flashcards</span>

@@ -14,4 +14,5 @@ public interface StudysetRepository extends JpaRepository<Studyset, Long> {
     Set<Studyset> findAllByOwner(User owner);
 
     Studyset findByName(String name);
+
 }

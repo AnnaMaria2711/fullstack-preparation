@@ -39,4 +39,8 @@ public class StudysetService {
     public Studyset findStudyset(String name) {
         return studysetRepository.findByName(name);
     }
+
+    public Studyset updateStudyset(Studyset studyset) {
+        return studysetRepository.save(studyset);
+    }
 }

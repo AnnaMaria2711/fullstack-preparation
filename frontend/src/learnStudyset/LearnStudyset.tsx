@@ -12,7 +12,9 @@ export default function LearnStudyset() {
             <div className="back">
                 <Link to={"/"}>Back</Link>
             </div>
-            <div className="h1">{name}</div>
+            <div className="margin">
+                <div className="h1">{name}</div>
+            </div>
             <div className="edit-studyset">
                 <Link to={"/"}></Link>
             </div>

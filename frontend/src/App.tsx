@@ -4,7 +4,7 @@ import Login from "./login/Login.tsx";
 import Collections from "./collections/Collections.tsx";
 import AddStudyset from "./addStudyset/AddStudyset.tsx";
 import LearnStudyset from "./learnStudyset/LearnStudyset.tsx";
-import Writing from "./Writing/Writing.tsx";
+import Writing from "./writing/Writing.tsx";
 
 import Flashcards from "./flashcard/Flashcards.tsx";
 

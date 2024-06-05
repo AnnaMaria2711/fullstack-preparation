@@ -33,3 +33,8 @@ body {
     flex-grow: 1;
     transform: translateY(-30px);
 }
+
+.margin {
+    margin-top: 20px;
+
+}

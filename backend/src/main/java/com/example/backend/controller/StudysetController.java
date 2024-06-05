@@ -34,7 +34,6 @@ public class StudysetController {
         return studysetService.createStudyset(request);
     }
 
-
     @PutMapping("/{id}/update")
     public Studyset updateStudyset(@PathVariable String name, @RequestBody StudysetCreateRequest request) {
         Studyset existingStudyset = studysetService.findStudyset(name);

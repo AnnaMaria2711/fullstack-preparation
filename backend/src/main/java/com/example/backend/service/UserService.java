@@ -19,6 +19,12 @@ public class UserService {
     private final UserRepository userRepository;
     private final StudysetRepository studysetRepository;
 
+    public User createUser(String username) {
+        User newUser = new User();
+        newUser.setName(username);
+        return userRepository.save(newUser);
+    }
+
     public User fetchUser(String name) {
         Optional<User> userOptional = userRepository.findByName(name);
         if (userOptional.isEmpty()) throw new RuntimeException();

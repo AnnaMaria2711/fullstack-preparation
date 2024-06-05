@@ -7,14 +7,16 @@ import LearnStudyset from "./learnStudyset/LearnStudyset.tsx";
 import Writing from "./writing/Writing.tsx";
 
 import Flashcards from "./flashcard/Flashcards.tsx";
+import Register from "./register/Register.tsx";
 
 function App() {
 
     return (
 
         <Routes>
-            <Route path="/login" element={<Login/>}/>
             <Route path="/" element={<Collections/>}/>
+            <Route path="/login" element={<Login/>}/>
+            <Route path="/register" element={<Register/>}/>
             <Route path="/add-studyset" element={<AddStudyset/>}/>
             <Route path="/learn/:name" element={<LearnStudyset/>}/>
             <Route path="/learn/:name/writing" element={<Writing/>}/>

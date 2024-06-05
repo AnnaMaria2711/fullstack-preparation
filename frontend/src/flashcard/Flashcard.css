@@ -3,11 +3,15 @@
     width: 800px;
     border: #f9f9f9 solid thin;
     display: flex;
+    border-radius: 2rem;
     justify-content: center;
     align-items: center;
     perspective: 1000px;
     transform-style: preserve-3d;
-    transition: transform 0.6s;
+    transition: transform .6s;
+    background: #5e007a;
+    box-shadow: 0px 0px 20px #000000;
+    color: #a15dcb;
 }
 
 .full-container {

@@ -1,4 +1,4 @@
-/* General Styles */
+
 body {
     height: 100vh;
     margin: 0;
@@ -10,7 +10,6 @@ body {
     align-items: center;
 }
 
-/* Page Container */
 .page-container {
     width: 1200px;
     height: 90%;

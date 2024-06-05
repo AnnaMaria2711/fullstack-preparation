@@ -23,4 +23,5 @@ public class Studyset {
 
     @ElementCollection
     private List<Long> observerIds = List.of();
+
 }

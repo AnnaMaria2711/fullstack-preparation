@@ -4,7 +4,6 @@ import com.example.backend.controller.StudysetController;
 import com.example.backend.model.dao.Studyset;
 import com.example.backend.model.dto.CardDto;
 import com.example.backend.model.dto.StudysetCreateRequest;
-import com.example.backend.model.repository.StudysetRepository;
 import com.example.backend.service.StudysetService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;
@@ -14,6 +13,7 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import java.util.List;
 
@@ -33,9 +33,6 @@ class StudysetTest {
     @MockBean
     private StudysetService studysetService;
 
-    @MockBean
-    private StudysetRepository studysetRepository;
-
     @Autowired
     private ObjectMapper objectMapper;
 
@@ -48,7 +45,6 @@ class StudysetTest {
         mockStudyset.setId(1L);
         mockStudyset.setName("Studyset 1");
 
-        when(studysetRepository.save(any(Studyset.class))).thenReturn(mockStudyset);
     }
 
     @Test
@@ -67,13 +63,18 @@ class StudysetTest {
         request.setOwnerId(1L);
         request.setCards(List.of(card1, card2));
 
+        Studyset set = new Studyset();
+        set.setId(1L);
+        set.setName("Studyset");
+
+        when(studysetService.createStudyset(any(StudysetCreateRequest.class))).thenReturn(set);
+
         // WHEN & THEN
         mockMvc.perform(post("/api/studyset/create")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(request)))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.id").value(1L))
-                .andExpect(jsonPath("$.name").value("Studyset 1"));
+                .andExpect(MockMvcResultMatchers.content().string(objectMapper.writeValueAsString(set)));
     }
 
 

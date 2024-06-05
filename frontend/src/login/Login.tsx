@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import axios from "axios";
-import {useNavigate} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import "./Login.css";
 
 function Login() {
@@ -26,6 +26,7 @@ function Login() {
                         setName(e.target.value);
                     }}/>
                     <button type="submit">Log in</button>
+                    <p>Register <Link to={"/register"}>here</Link></p>
                 </form>
             </div>
         </>

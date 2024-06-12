@@ -1,6 +1,6 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useRef, useState} from "react";
 import {StudySet} from "../collections/Collections.tsx";
-import {Link, useParams} from "react-router-dom";
+import {Link, useNavigate, useParams} from "react-router-dom";
 import axios from "axios";
 
 export default function Writing() {
@@ -16,10 +16,13 @@ export default function Writing() {
 
     const params = useParams();
     const name: string | undefined = params.name;
+    const isFirstTryRef = useRef<boolean>(true);
     const [index, setIndex] = useState(0);
     const [input, setInput] = useState<string>('');
     const [message, setMessage] = useState<string>("");
     const [isClicked, setIsClicked] = useState<boolean>(false);
+    const [points, setPoints] = useState(0);
+    const navigate = useNavigate();
 
     useEffect(() => {
         const user = localStorage.getItem("User");
@@ -39,16 +42,26 @@ export default function Writing() {
 
     const handleNext = () => {
         if (studyset.cards[index]?.solution === input) {
+            if (isFirstTryRef.current) {
+                setPoints(prevPoints => prevPoints + 1);
+            }
             setMessage("correct");
             setTimeout(() => {
-                setMessage("");
-                setInput("");
-                setIndex(prevState => prevState + 1);
-                setIsClicked(false);
+                if (index < studyset.cards.length - 1) {
+                    isFirstTryRef.current = true;
+                    setMessage("");
+                    setInput("");
+                    setIndex(prevState => prevState + 1);
+                    setIsClicked(false);
+                } else {
+                    handleFinish();
+                }
             }, 1000);
         } else {
+            isFirstTryRef.current = false;
             setMessage("incorrect");
         }
+
     };
 
     const handleBack = () => {
@@ -60,21 +73,22 @@ export default function Writing() {
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        if (studyset.cards[index]?.solution === input) {
-            setMessage("correct");
-            setTimeout(() => {
-                setMessage("");
-                setInput("");
-                setIndex(prevState => prevState + 1);
-                setIsClicked(false);
-            }, 1000);
-        } else {
-            setMessage("incorrect");
-        }
+        handleNext();
     };
 
     const handleClick = () => {
         setIsClicked(!isClicked);
+    };
+
+    const handleFinish = () => {
+        axios.post(`/api/points`, {points})
+            .then((res) => {
+                console.log(res.data);
+                navigate(`/learn/${studyset.name}`);
+            })
+            .catch((err) => {
+                console.error(err);
+            });
     };
 
     return (
@@ -92,10 +106,15 @@ export default function Writing() {
                 />
             </form>
             {message && <div className="h1">{message}</div>}
-            <button onClick={handleNext} disabled={studyset.cards.length - 1 === index}>Next</button>
-            <button onClick={handleBack} disabled={index === 0}>Back</button>
+            <div style={{display: "flex", justifyContent: "space-between"}}>
+                <button onClick={handleBack} disabled={index === 0}>Back</button>
+                {studyset.cards.length - 1 === index
+                    ? <button onClick={handleFinish}>Finish</button>
+                    : <button onClick={handleNext} disabled={studyset.cards.length - 1 === index}>Next</button>}
+            </div>
             <button onClick={handleClick}>show solution</button>
             {isClicked && <div className="h1">{studyset.cards[index]?.solution}</div>}
+            <div className="points">Points: {points}</div>
         </>
     );
 }

@@ -1,6 +1,6 @@
 import './Flashcard.css';
 import React, {useEffect, useState} from "react";
-import {Link, useParams} from "react-router-dom";
+import {Link, useNavigate, useParams} from "react-router-dom";
 import axios from "axios";
 import {StudySet} from "../collections/Collections.tsx";
 import FlashCard from "./FlashCard.tsx";
@@ -21,6 +21,7 @@ export default function Flashcards() {
     const params = useParams();
     const name: string | undefined = params.name;
     const [index, setIndex] = useState(0);
+    const navigate = useNavigate();
 
     useEffect(() => {
         const user = localStorage.getItem("User");
@@ -45,6 +46,10 @@ export default function Flashcards() {
         }
     };
 
+    const handleFinish = () => {
+        navigate(`/learn/${studyset.name}`);
+    }
+
     const handleBack = (e: React.MouseEvent) => {
         e.stopPropagation();
         if (index > 0) {
@@ -64,7 +69,9 @@ export default function Flashcards() {
 
             <div className="button-container">
                 <button onClick={handleBack} disabled={index === 0}>Back</button>
-                <button onClick={handleNext} disabled={studyset.cards.length - 1 === index}>Next</button>
+                {studyset.cards.length - 1 === index
+                    ? <button onClick={handleFinish}>Finish</button>
+                    : <button onClick={handleNext} disabled={studyset.cards.length - 1 === index}>Next</button>}
             </div>
         </>
     );

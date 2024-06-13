@@ -44,7 +44,7 @@ function Collections() {
     const handleSearch = (event: React.FormEvent<HTMLInputElement>) => {
         event.preventDefault();
         setSearchTerm(event.currentTarget.value.toUpperCase());
-        setPageIndex(0);  // Reset to first page on new search
+        setPageIndex(0);
     }
 
     const handleNext = () => {

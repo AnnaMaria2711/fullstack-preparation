@@ -1,7 +1,7 @@
 .flashcards-container {
     height: 500px;
     width: 800px;
-    border: #f9f9f9 solid thin;
+    border: rgba(0, 0, 0, 0.2) solid medium;
     display: flex;
     border-radius: 2rem;
     justify-content: center;

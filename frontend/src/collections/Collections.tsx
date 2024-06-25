@@ -63,14 +63,16 @@ function Collections() {
                 <input placeholder={"Search for studysets..."} type={"text"} onChange={handleSearch}/>
                 <div className={"header"}>Select the collection you wish to study</div>
                 <div className={"align-right"}>
-                    <Link to={"/add-studyset"}>add studyset</Link>
+                    <Link to={"/collections/add-studyset"}>add studyset</Link>
                 </div>
             </div>
             <div className="studyset-list-container">
                 {filteredStudySets.slice(pageIndex * elementsPerPage, (pageIndex + 1) * elementsPerPage).map((studySet, index) => (
-                    <div key={index} className="collection-item" onClick={() => navigate(`/learn/${studySet.name}`)}>
-                        <span>{studySet.name}</span>
-                    </div>
+                    <Link to={`/collections/learn/${studySet.id}`} state={studySet}>
+                        <div key={index} className="collection-item">
+                            <span>{studySet.name}</span>
+                        </div>
+                    </Link>
                 ))}
             </div>
             <div>{pageIndex + 1}</div>

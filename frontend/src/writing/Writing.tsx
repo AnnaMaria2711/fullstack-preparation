@@ -15,7 +15,7 @@ export default function Writing() {
     });
 
     const params = useParams();
-    const name: string | undefined = params.name;
+    const id: string | undefined = params.name;
     const isFirstTryRef = useRef<boolean>(true);
     const [index, setIndex] = useState(0);
     const [input, setInput] = useState<string>('');
@@ -30,7 +30,7 @@ export default function Writing() {
             return;
         }
 
-        axios.get(`/api/studyset/${name}`)
+        axios.get(`/api/studyset/${id}`)
             .then((res) => {
                 console.log(res.data);
                 setStudyset(res.data);
@@ -38,7 +38,7 @@ export default function Writing() {
             .catch((err) => {
                 console.error(err);
             });
-    }, [name]);
+    }, [id]);
 
     const handleNext = () => {
         if (studyset.cards[index]?.solution === input) {
@@ -84,7 +84,7 @@ export default function Writing() {
         axios.post(`/api/points`, {points})
             .then((res) => {
                 console.log(res.data);
-                navigate(`/learn/${studyset.name}`);
+                navigate(`/collections/learn/${studyset.id}`);
             })
             .catch((err) => {
                 console.error(err);
@@ -94,7 +94,7 @@ export default function Writing() {
     return (
         <>
             <div className="back">
-                <Link to={`/learn/${name}`}>Back</Link>
+                <Link to={`/collections/learn/${id}`} state={studyset}>Back</Link>
             </div>
             <div className="h1">{studyset.cards[index]?.word}</div>
             <form onSubmit={handleSubmit}>
@@ -109,7 +109,9 @@ export default function Writing() {
             <div style={{display: "flex", justifyContent: "space-between"}}>
                 <button onClick={handleBack} disabled={index === 0}>Back</button>
                 {studyset.cards.length - 1 === index
-                    ? <button onClick={handleFinish}>Finish</button>
+                    ? <Link to={`/collections/learn/${id}`} state={studyset}>
+                        <button>Finish</button>
+                    </Link>
                     : <button onClick={handleNext} disabled={studyset.cards.length - 1 === index}>Next</button>}
             </div>
             <button onClick={handleClick}>show solution</button>

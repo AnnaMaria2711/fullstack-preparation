@@ -3,12 +3,13 @@ import {Link, useNavigate} from "react-router-dom";
 import "./AddStudyset.css";
 import CardComponent from "./CardComponent.tsx";
 import axios from "axios";
-import {Card} from "../types.tsx";
+import {Card, Owner} from "../types.tsx";
 
 
 function AddStudyset() {
 
     const emptyCard: Card = {word: "", solution: ""};
+    const [user] = useState<Owner>(JSON.parse(localStorage.getItem("User") || ""));
     const navigate = useNavigate();
     const [name, setName] = useState<string>("");
     const [cards, setCards] = useState<Card[]>([emptyCard]);
@@ -19,9 +20,11 @@ function AddStudyset() {
         if (cards.length === 1 && (cards[0].word === "" || cards[0].solution === "")) {
             console.warn("No completed cards");
         }
+        console.log(user.id);
+
         const requestData = {
             name: name,
-            ownerId: 1,
+            ownerId: user.id,
             cards: [...cards].splice(0, cards.length - 1)
         }
 
@@ -30,7 +33,7 @@ function AddStudyset() {
         axios.post("/api/studyset/create", requestData)
             .then(() => {
                 console.log("Success.");
-                navigate("/");
+                navigate("/collections");
             })
             .catch(() => console.log("Kaputt."))
     }
@@ -80,7 +83,7 @@ function AddStudyset() {
     return (
         <>
             <div className={"back"}>
-                <Link to={"/"}>Back</Link>
+                <Link to={"/collections"}>Back</Link>
             </div>
             <div className={"h1"}>Add Studyset</div>
             <form onSubmit={handleSubmit} autoComplete={"off"}>

@@ -1,30 +1,32 @@
-import {Link, useNavigate, useParams} from "react-router-dom";
+import {Link, useLocation} from "react-router-dom";
 import './LearnStudyset.css'
 
 export default function LearnStudyset() {
-    const params = useParams();
-    const name: string | undefined = params.name;
-    const navigate = useNavigate();
+    const {state} = useLocation();
 
 
     return (
         <>
             <div className="back">
-                <Link to={"/"}>Back</Link>
+                <Link to={"/collections"}>Back</Link>
             </div>
             <div className="margin">
-                <div className="h1">{name}</div>
+                <div className="h1">{state.name}</div>
             </div>
             <div className="edit-studyset">
-                <Link to={"/"}></Link>
+                <Link to={"/collections"}></Link>
             </div>
             <div className={"flex-row"}>
-                <div className="collection-item" onClick={() => navigate(`/learn/${name}/flashcards`)}>
-                    <span>Flashcards</span>
-                </div>
-                <div className="collection-item" onClick={() => navigate(`/learn/${name}/writing`)}>
-                    <span>Writing</span>
-                </div>
+                <Link to={`/collections/learn/${state.id}/flashcards`} state={state}>
+                    <div className="collection-item">
+                        <span>Flashcards</span>
+                    </div>
+                </Link>
+                <Link to={`/collections/learn/${state.id}/writing`} state={state}>
+                    <div className="collection-item">
+                        <span>Writing</span>
+                    </div>
+                </Link>
             </div>
         </>
     )

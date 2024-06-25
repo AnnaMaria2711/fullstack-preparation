@@ -29,18 +29,23 @@ public class StudysetService {
         Studyset studyset = new Studyset();
         studyset.setName(request.getName());
         studyset.setOwner(user);
-        List<Card> cards = request.getCards().stream().map(Card::new).toList();
+        List<Card> cards = request.getCards().stream().filter(cardDto -> !(cardDto.getWord().isBlank() && cardDto.getSolution().isBlank())).map(Card::new).toList();
         studyset.setCards(cards);
         studyset = studysetRepository.save(studyset);
 
         return studyset;
     }
 
-    public Studyset findStudyset(String name) {
-        return studysetRepository.findByName(name);
+    public List<Studyset> findStudyset(String name, Long ownerId) {
+        return studysetRepository.findByNameAndOwnerId(name, ownerId);
     }
 
     public Studyset updateStudyset(Studyset studyset) {
         return studysetRepository.save(studyset);
+    }
+
+    public Studyset findStudysetById(Long id) {
+        return studysetRepository.findById(id)
+                .orElse(null);
     }
 }

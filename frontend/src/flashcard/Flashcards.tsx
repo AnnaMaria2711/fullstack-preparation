@@ -1,35 +1,34 @@
 import './Flashcard.css';
 import React, {useEffect, useState} from "react";
-import {Link, useNavigate, useParams} from "react-router-dom";
+import {Link, useParams} from "react-router-dom";
 import axios from "axios";
 import {StudySet} from "../collections/Collections.tsx";
 import FlashCard from "./FlashCard.tsx";
-import {Card} from "../types.tsx";
+import {Card, Owner} from "../types.tsx";
 
 export default function Flashcards() {
 
     const [studyset, setStudyset] = useState<StudySet>({
-        cards: [],
         id: 0,
         name: "",
         owner: {
             id: 0,
-            name: ""
-        }
+            name: "",
+        },
+        cards: [],
     });
 
     const params = useParams();
-    const name: string | undefined = params.name;
+    const id: string | undefined = params.name;
     const [index, setIndex] = useState(0);
-    const navigate = useNavigate();
+    const [user] = useState<Owner>(JSON.parse(localStorage.getItem("User") || ""));
 
     useEffect(() => {
-        const user = localStorage.getItem("User");
         if (!user) {
             return;
         }
 
-        axios.get(`/api/studyset/${name}`)
+        axios.get(`/api/studyset/${id}`)
             .then((res) => {
                 console.log(res.data);
                 setStudyset(res.data);
@@ -37,7 +36,7 @@ export default function Flashcards() {
             .catch((err) => {
                 console.error(err);
             });
-    }, [name]);
+    }, [id, user]);
 
     const handleNext = (e: React.MouseEvent) => {
         e.stopPropagation();
@@ -46,9 +45,6 @@ export default function Flashcards() {
         }
     };
 
-    const handleFinish = () => {
-        navigate(`/learn/${studyset.name}`);
-    }
 
     const handleBack = (e: React.MouseEvent) => {
         e.stopPropagation();
@@ -60,7 +56,7 @@ export default function Flashcards() {
     return (
         <>
             <div className="back">
-                <Link to={`/learn/${name}`}>Back</Link>
+                <Link to={`/collections/learn/${id}`} state={studyset}>Back</Link>
             </div>
 
             {studyset.cards.map((card: Card, i: number) => i === index &&
@@ -70,7 +66,9 @@ export default function Flashcards() {
             <div className="button-container">
                 <button onClick={handleBack} disabled={index === 0}>Back</button>
                 {studyset.cards.length - 1 === index
-                    ? <button onClick={handleFinish}>Finish</button>
+                    ? <Link to={`/collections/learn/${id}`} state={studyset}>
+                        <button>Finish</button>
+                    </Link>
                     : <button onClick={handleNext} disabled={studyset.cards.length - 1 === index}>Next</button>}
             </div>
         </>

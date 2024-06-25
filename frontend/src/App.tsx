@@ -1,5 +1,5 @@
 import './App.css'
-import {Route, Routes} from "react-router-dom";
+import {Navigate, Route, Routes} from "react-router-dom";
 import Login from "./login/Login.tsx";
 import Collections from "./collections/Collections.tsx";
 import AddStudyset from "./addStudyset/AddStudyset.tsx";
@@ -14,13 +14,14 @@ function App() {
     return (
 
         <Routes>
-            <Route path="/" element={<Collections/>}/>
+            <Route path="/" element={<Navigate to={"/login"}/>}/>
             <Route path="/login" element={<Login/>}/>
             <Route path="/register" element={<Register/>}/>
-            <Route path="/add-studyset" element={<AddStudyset/>}/>
-            <Route path="/learn/:name" element={<LearnStudyset/>}/>
-            <Route path="/learn/:name/writing" element={<Writing/>}/>
-            <Route path="/learn/:name/flashcards" element={<Flashcards/>}/>
+            <Route path="/collections" element={<Collections/>}/>
+            <Route path="/collections/add-studyset" element={<AddStudyset/>}/>
+            <Route path="/collections/learn/:name" element={<LearnStudyset/>}/>
+            <Route path="/collections/learn/:name/writing" element={<Writing/>}/>
+            <Route path="/collections/learn/:name/flashcards" element={<Flashcards/>}/>
         </Routes>
 
     )

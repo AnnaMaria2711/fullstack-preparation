@@ -21,9 +21,14 @@ public class StudysetController {
         return studysetService.fetchALLStudysets();
     }
 
-    @GetMapping("/{name}")
-    public Studyset searchStudysets(@PathVariable String name) {
-        return studysetService.findStudyset(name);
+    @GetMapping("/{id}")
+    public Studyset fetchById(@PathVariable Long id) {
+        return studysetService.findStudysetById(id);
+    }
+
+    @GetMapping("/{name}/{ownerId}")
+    public List<Studyset> searchStudysets(@PathVariable String name, @PathVariable Long ownerId) {
+        return studysetService.findStudyset(name, ownerId);
     }
 
     @PostMapping("/create")
@@ -35,8 +40,8 @@ public class StudysetController {
     }
 
     @PutMapping("/{id}/update")
-    public Studyset updateStudyset(@PathVariable String name, @RequestBody StudysetCreateRequest request) {
-        Studyset existingStudyset = studysetService.findStudyset(name);
+    public Studyset updateStudyset(@PathVariable Long id, @RequestBody StudysetCreateRequest request) {
+        Studyset existingStudyset = studysetService.findStudysetById(id);
         existingStudyset.setName(request.getName());
         return studysetService.updateStudyset(existingStudyset);
     }

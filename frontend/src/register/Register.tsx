@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import axios from "axios";
-import {useNavigate} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 
 type UserCreateRequest = {
     name: string;
@@ -18,14 +18,21 @@ export default function Register() {
         })
     }
 
-    return (<>
-        <div className={"center-login"}>
-            <form onSubmit={handleSubmit}>
-                <input placeholder={"Enter your Username"} value={username} type="text" onChange={(e) => {
-                    setUsername(e.target.value);
-                }}/>
-                <button type="submit">Register</button>
-            </form>
-        </div>
-    </>);
+    return (
+        <>
+            <div className={"back"}>
+                <Link to={"/"}>Back</Link>
+            </div>
+            <div className={"content-container"}>
+                <div className={"h1"}>Register</div>
+                <div className={"center-login"}>
+                    <form onSubmit={handleSubmit}>
+                        <input placeholder={"Enter your Username"} value={username} type="text" onChange={(e) => {
+                            setUsername(e.target.value);
+                        }}/>
+                        <button type="submit">Register</button>
+                    </form>
+                </div>
+            </div>
+        </>);
 }

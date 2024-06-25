@@ -81,14 +81,24 @@ export default function Writing() {
     };
 
     const handleFinish = () => {
-        axios.post(`/api/points`, {points})
-            .then((res) => {
-                console.log(res.data);
-                navigate(`/collections/learn/${studyset.id}`);
-            })
-            .catch((err) => {
-                console.error(err);
-            });
+        if (studyset.cards[index]?.solution === input) {
+            console.log(studyset.cards[index]?.solution, input)
+            if (isFirstTryRef.current) {
+                setPoints(prevPoints => prevPoints + 1);
+            }
+            setMessage("correct");
+            axios.post(`/api/points`, {points})
+                .then((res) => {
+                    console.log(res.data);
+                    navigate(`/collections/learn/${studyset.id}`, {state: {studyset}});
+                })
+                .catch((err) => {
+                    console.error(err);
+                });
+        } else {
+            isFirstTryRef.current = false;
+            setMessage("incorrect");
+        }
     };
 
     return (
@@ -109,9 +119,7 @@ export default function Writing() {
             <div style={{display: "flex", justifyContent: "space-between"}}>
                 <button onClick={handleBack} disabled={index === 0}>Back</button>
                 {studyset.cards.length - 1 === index
-                    ? <Link to={`/collections/learn/${id}`} state={studyset}>
-                        <button>Finish</button>
-                    </Link>
+                    ? <button onClick={handleFinish}>Finish</button>
                     : <button onClick={handleNext} disabled={studyset.cards.length - 1 === index}>Next</button>}
             </div>
             <button onClick={handleClick}>show solution</button>

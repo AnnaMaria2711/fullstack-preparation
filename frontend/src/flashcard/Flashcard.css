@@ -37,6 +37,7 @@
     transform: rotateY(180deg);
 }
 
+
 .flashcard .front,
 .flashcard .flashcard-back {
     position: absolute;

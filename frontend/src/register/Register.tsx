@@ -23,7 +23,7 @@ export default function Register() {
             <div className={"back"}>
                 <Link to={"/"}>Back</Link>
             </div>
-            <div className={"content-container"}>
+            <div className={"page-container"}>
                 <div className={"h1"}>Register</div>
                 <div className={"center-login"}>
                     <form onSubmit={handleSubmit}>

@@ -17,7 +17,7 @@ function Collections() {
     const [studySets, setStudySets] = useState<StudySet[]>([]);
     const [searchTerm, setSearchTerm] = useState<string>("");
     const [pageIndex, setPageIndex] = useState<number>(0);
-    const elementsPerPage = 16;
+    const elementsPerPage = 8;
 
     useEffect(() => {
         const userString = localStorage.getItem("User");

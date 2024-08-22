@@ -24,8 +24,14 @@ body {
 .studyset-word-solution {
     display: flex;
     justify-content: space-between;
-    align-items: center;
     margin-bottom: 20px;
+    align-items: baseline;
+    padding-left: 5px;
+}
+
+
+label {
+    padding-left: 10px;
 }
 
 .h1 {

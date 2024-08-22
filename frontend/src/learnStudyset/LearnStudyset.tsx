@@ -7,6 +7,7 @@ export default function LearnStudyset() {
 
     return (
         <>
+
             <div className="back">
                 <Link to={"/collections"}>Back</Link>
             </div>

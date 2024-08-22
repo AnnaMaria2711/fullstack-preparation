@@ -82,36 +82,37 @@ function AddStudyset() {
 
     return (
         <>
-            <div className={"back"}>
-                <Link to={"/collections"}>Back</Link>
-            </div>
-            <div className={"h1"}>Add Studyset</div>
-            <form onSubmit={handleSubmit} autoComplete={"off"}>
-                <div className={"form-container"}>
-                    <div className={"studyset-name"}>
-                        <label htmlFor="name">Name:</label>
-                        <input name="name" placeholder={"Studyset name"} value={name} type={"text"}
-                               onChange={(e) => {
-                                   setName(e.target.value);
-                               }}/>
-                    </div>
-                    {cards.map((card, i) => {
-                        return <div key={i}>
-                            <CardComponent card={card} setSolution={(s) => {
-                                setSolution(i, s);
-                            }} setWord={(w) => {
-                                setWord(i, w)
-                            }} delete={() => {
-                                deleteCard(i);
-                            }} isLast={i === cards.length - 1}/>
-                        </div>
-                    })}
-                    <div className={"submit-button"}>
-                        <button type={"submit"}> Add Studyset</button>
-                    </div>
+            <div className={"page-container"}>
+                <div className={"back"}>
+                    <Link to={"/collections"}>Back</Link>
                 </div>
-            </form>
-
+                <div className={"h1"}>Add Studyset</div>
+                <form onSubmit={handleSubmit} autoComplete={"off"}>
+                    <div className={"form-container"}>
+                        <div className={"studyset-name"}>
+                            <label htmlFor="name">Name:</label>
+                            <input name="name" placeholder={"Studyset name"} value={name} type={"text"}
+                                   onChange={(e) => {
+                                       setName(e.target.value);
+                                   }}/>
+                        </div>
+                        {cards.map((card, i) => {
+                            return <div key={i}>
+                                <CardComponent card={card} setSolution={(s) => {
+                                    setSolution(i, s);
+                                }} setWord={(w) => {
+                                    setWord(i, w)
+                                }} delete={() => {
+                                    deleteCard(i);
+                                }} isLast={i === cards.length - 1}/>
+                            </div>
+                        })}
+                        <div className={"submit-button"}>
+                            <button type={"submit"}> Add Studyset</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
         </>
     );
 }

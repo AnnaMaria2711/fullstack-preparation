@@ -3,5 +3,41 @@
     height: 100%;
     justify-content: space-around;
     flex-direction: column;
+    align-items: center; /* Center aligns content horizontally */
 }
 
+.content-container {
+    width: 80vw;
+}
+
+input[type="text"] {
+    width: auto; /* Allow width to be adjusted based on padding */
+    padding: 10px 20px; /* Adjust padding to match the button */
+    border-radius: 5px;
+    border: 1px solid #aaa; /* Optional: style to match the button */
+    font-size: 16px;
+    box-sizing: border-box; /* Ensures padding is included in width */
+    text-align: center; /* Centers text in the input field */
+    background-color: #4b0047; /* Match the button color if needed */
+    color: #fff;
+}
+
+
+input[type="text"] {
+    width: 200px; /* Ensure both elements have the same width */
+    outline: none;
+    border: none;
+}
+
+
+@media (max-width: 768px) {
+    input[type="text"] {
+        width: 150px; /* Adjust for smaller screens */
+        outline: none;
+        border: none;
+    }
+
+    input:focus::placeholder {
+        opacity: 0; /* Make placeholder invisible when input is focused */
+    }
+}
